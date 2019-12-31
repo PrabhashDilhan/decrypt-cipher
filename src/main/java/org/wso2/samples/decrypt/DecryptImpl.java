@@ -42,7 +42,7 @@ public class DecryptImpl {
             throws Exception {
         KeyStore keyStore = getKeyStore(keystore, keystorePassword);
         PrivateKey privateKey = (PrivateKey) keyStore.getKey(keystoreAlias, keystorePassword.toCharArray());
-        Cipher cipher = Cipher.getInstance("RSA");
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPwithSHA1andMGF1Padding");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
         byte[] cipherbyte=cipher.doFinal(ciphertext);
         return new String(cipherbyte);
